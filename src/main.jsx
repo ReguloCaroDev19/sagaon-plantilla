@@ -4,6 +4,10 @@ import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Plantilla } from './app/Plantilla';
 const router = createBrowserRouter([
+	{
+    path: '/',
+    element: <div>Hola Vercel!</div>,
+  },
   {
     path: '/:id',
     element: <Plantilla />,
