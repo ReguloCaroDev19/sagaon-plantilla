@@ -1,8 +1,3 @@
 {
-  "rewrites": [
-    {
-      "source": "/:id",
-      "destination": "/app/Plantilla.tsx"
-    }
-  ]
+  "rewrites": [{ "source": "/:path*", "destination": "/index.html" }]
 }
