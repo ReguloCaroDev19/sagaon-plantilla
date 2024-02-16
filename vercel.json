@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/:id",
-      "destination": "/:id"
+      "destination": "/Plantilla.tsx"
     }
   ]
 }
