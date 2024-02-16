@@ -1,0 +1,5 @@
+[[[redirects]]
+  from = "/*"
+  to = "/:splat"
+  query = {id = ":id"}
+  force = true
