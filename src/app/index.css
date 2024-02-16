@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200&display=swap');
+:root {
+  --width: -100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.content-box-container {
+  background-color: #dad8d7;
+}
+
+.content-box-container .content-box-buttons {
+  text-align: left;
+  background-color: #dad8d8;
+}
+
+.content-box-container .content-box-buttons button {
+  padding: 10px;
+  border: none;
+  background-color: #dad8d8;
+  border-right: 1px solid #a0a0a0;
+  cursor: pointer;
+}
+
+.content-box-container .content-box-buttons button.clicked {
+  background-color: #1c1920;
+  color: #ffff;
+}
+
+.content-box-container .content-box-message {
+  border-top: 2px solid #a0a0a0;
+  background-color: #ebe9ea;
+  margin: 0;
+  padding: 30px;
+}
+
+.content-box-container .content-box-message .description-box {
+  width: 33%;
+}
+
+.slider-container {
+  display: flex;
+  padding: 20px 0;
+  justify-content: space-around;
+  background-color: #e5e4e4;
+}
+
+.slider-container .slider-item p {
+  margin: 0 auto;
+}
+
+.simple-button {
+  background-color: #1b76bc;
+  color: #ffff;
+  border: none;
+  position: absolute;
+  bottom: 20px;
+  left: 45%;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.negative-simple-button {
+  background-color: #69696ade;
+  padding: 0 15px;
+  color: #ffff;
+  border: none;
+  position: absolute;
+  bottom: 20px;
+  left: 45%;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.App {
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.slider-container {
+  width: 200%;
+  position: relative;
+}
+
+.slider-container .background {
+  background-color: #e5e4e4;
+  width: 300%;
+  height: 400px;
+  top: 0;
+  position: absolute;
+}
+
+.slider-container .slider-wrapper {
+  display: flex;
+  /* width: 50%; */
+  position: absolute;
+}
+
+.animation {
+  animation: infinite-scroll 20s linear infinite;
+  animation-play-state: paused;
+}
+
+.animation:hover {
+  animation-play-state: running;
+}
+
+@keyframes infinite-scroll {
+  0% {
+      left: 0px;
+  }
+  100% {
+      /* left: -2900px; */
+      left: var(--width);
+  }
+}
+
+/* .animation:hover {
+  animation-play-state: paused;
+} */
+
+.slider-container .slider-item {
+  width: calc(33vw - 100px);
+  min-width: calc(33vw - 100px);
+  padding: 0 50px;
+}
+
+.slider-container .slider-item img {
+  box-shadow: -10px 10px 10px 1px #909090;
+  width: 300px;
+  object-fit: contain;
+}
+
+.slider-container .slider-item p:nth-child(2) {
+  font-size: 25px;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.slider-header-materials {
+  font-family: 'Outfit', sans-serif;
+  font-size: 30px;
+  color: #494949;
+  font-size: 30px;
+  text-align: initial;
+  margin-left: 30px;
+  margin-top: 100px;
+  margin-bottom: 10px;
+}
+
+.slider-header-materials-underline {
+  width: 500px;
+  height: 3px;
+  background-color: #494949;
+  margin-bottom: 40px;
+}
+
+.slider-header {
+  font-family: 'Outfit', sans-serif;
+  color: #494949;
+  font-size: 40px;
+  margin-top: 150px;
+}
+
+.accordion-container {
+  background-color: #eeeeee;
+  height: 100%;
+  padding: 50px;
+  display: flex;
+}
+
+.accordion-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.accordion-wrapper iframe, .accordion-wrapper div {
+  max-width: 600px;
+}
+
+.appear {
+  animation: banish .5s linear;
+}
+
+@keyframes banish {
+  from {
+    opacity: .0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+

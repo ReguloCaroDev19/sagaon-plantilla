@@ -1,0 +1,107 @@
+@media only screen and (max-width: 900px) and (min-width: 601px ) {
+
+  /* machine-info-box */
+  .content-box-container .content-box-message .description-box {
+    font-size: 12px;
+  }
+
+  /* slider */
+  .slider-header {
+    font-size: 30px;
+    margin-top: 100px;
+  }
+  .slider-container .slider-item img {
+    box-shadow: -10px 10px 10px 1px #909090;
+    height: 300px;
+    object-fit: cover;
+    width: calc(33vw - 100px);
+  }
+
+  /* accordion */
+  .accordion-wrapper iframe, .accordion-wrapper div {
+    width: 100%;
+  }
+  .accordion-wrapper iframe, .accordion-wrapper div .accordion-subject,
+  .accordion-wrapper iframe, .accordion-wrapper div .accordion-details {
+    font-size: 12px;
+  }
+
+  /* extras */
+  .simple-button {
+    left: calc(50% - 90px);
+  }
+  .negative-simple-button {
+    left: calc(50% - 115px)
+  }
+  .footer-img {
+    object-fit: cover;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+
+  /* machine-info-box */
+  .content-box-container .content-box-buttons button:nth-child(1n) {
+    font-size: 2.5vw;
+  }
+  .content-box-container .content-box-message {
+    padding: 10px 20px 10px 10px;
+    font-size: 13px;
+  }
+  .content-box-container .content-box-message div {
+    flex-direction: column;
+  }
+  .content-box-container .content-box-message .description-box {
+    width: 100%;
+  }
+
+  /* slider */
+  .slider-header {
+    font-size: 15px;
+    margin-top: 50px;
+  }
+  .slider-container .slider-item {
+    width: 100%;
+    min-width: calc(33vw - 100px);
+    padding: 0 20px;
+  }
+  .slider-container .slider-item img {
+    width: 100px;
+    height: 300px;
+    object-fit: cover;
+  }
+  .slider-container .slider-item p:nth-child(1n) {
+    font-size: 12px;
+  }
+  .slider-container .slider-item p:nth-child(2) {
+    font-size: 17px;
+  }
+
+  /* accordion */
+  .accordion-container {
+    padding: unset;
+  }
+  .accordion-wrapper {
+    flex-direction: column;
+    width: 100%;
+  }
+  .accordion-wrapper iframe, .accordion-wrapper div {
+    width: 100%;
+  }
+  .accordion-wrapper iframe, .accordion-wrapper div .accordion-subject,
+  .accordion-wrapper iframe, .accordion-wrapper div .accordion-details {
+    font-size: 12px;
+  }
+
+  /* extras */
+  .simple-button {
+    left: calc(50% - 90px);
+  }
+  .negative-simple-button {
+    left: calc(50% - 115px)
+  }
+  .footer-img {
+    object-fit: cover;
+  }
+
+}
