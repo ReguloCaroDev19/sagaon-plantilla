@@ -8,15 +8,16 @@ export const Plantilla = () => {
   const [data, setData] = useState<any>([]);
   const [info, setInfo] = useState<any>('descripcion');
   const { id } = useParams();
-  console.log(id);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3333/${id}`);
+        const response = await axios.get(
+          `https://sagaon-express.vercel.app/${id}`
+        );
         setData(response.data);
       } catch (error) {
-        console.error('Error fetching data: ', error);
+        console.error("Error fetching data: ", error);
       }
     };
     fetchData();
@@ -144,8 +145,11 @@ export const Plantilla = () => {
           style={{ width: "-1673px" }}
         >
           {data.map((product: any) =>
-            product.materiales.map((material: any) => (
-              <div className="slider-item" key={material.id}>
+            product.materiales.map((material: any, index: number) => (
+              <div
+                className="slider-item"
+                key={Math.floor(Math.random() * (10000 - 1 + 1)) + 1}
+              >
                 <img alt="img1" src={material.urlimage} />
                 <p>{material.name}</p>
                 <p>Graba: SI</p>
@@ -207,16 +211,23 @@ export const Plantilla = () => {
       <div>
         <h2 className="slider-header">PREGUNTAS FRECUENTES</h2>
       </div>
-      <div className="accordion-container">
-        <div className="accordion-wrapper">
-          <iframe
-            title="youtube-video"
-            width="560px"
-            height="315px"
-            src="https://www.youtube.com/embed/ZorCIyg1uMI"
-          ></iframe>
+      {data.map((product: any) => (
+        <div className="accordion-container" key={product.sku}>
+          <div className="accordion-wrapper">
+            <iframe
+              title="youtube-video"
+              width="560px"
+              height="315px"
+              src={
+                product.urlvideo !== null
+                  ? product.urlvideo
+                  : "https://www.youtube.com/embed/ZorCIyg1uMI"
+              }
+            ></iframe>
+          </div>
         </div>
-      </div>
+      ))}
+
       <div style={{ marginTop: "150px", position: "relative" }}>
         <img
           className="footer-img"
