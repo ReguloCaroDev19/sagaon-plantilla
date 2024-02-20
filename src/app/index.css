@@ -89,7 +89,6 @@ code {
 .App {
   text-align: center;
   overflow-x: hidden;
-  height: max-content;
 }
 
 .slider-container {
