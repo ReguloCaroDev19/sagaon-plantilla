@@ -12,7 +12,7 @@ import {
 
 export const Plantilla = () => {
   const [data, setData] = useState([]);
-  const [info, setInfo] = useState("Incluye");
+  const [info, setInfo] = useState("incluye");
   const [expanded, setExpanded] = useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
