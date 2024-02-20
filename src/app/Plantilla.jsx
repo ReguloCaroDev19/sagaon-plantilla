@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import './index.css';
-import './mobil.css';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import "./index.css";
+import "./mobil.css";
+import { useParams } from "react-router-dom";
 import {
   Accordion,
   AccordionDetails,
@@ -12,7 +12,7 @@ import {
 
 export const Plantilla = () => {
   const [data, setData] = useState([]);
-  const [info, setInfo] = useState('descripcion');
+  const [info, setInfo] = useState("descripcion");
   const [expanded, setExpanded] = useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -26,6 +26,7 @@ export const Plantilla = () => {
           `https://sagaon-express.vercel.app/${id}`
         );
         setData(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
@@ -39,15 +40,18 @@ export const Plantilla = () => {
     <div className="App">
       <div className="content-box-container">
         <div className="content-box-buttons">
-          <button
-            className={`${info === "descripcion" ? "clicked" : null}`}
-            onClick={(event) => {
-              cambiarInfo(event.currentTarget.value);
-            }}
-            value={"descripcion"}
-          >
-            DESCRIPCION
-          </button>
+          {data[0].descripcion && (
+            <button
+              className={`${info === "descripcion" ? "clicked" : null}`}
+              onClick={(event) => {
+                cambiarInfo(event.currentTarget.value);
+              }}
+              value={"descripcion"}
+            >
+              DESCRIPCION
+            </button>
+          )}
+
           <button
             className={`${info === "incluye" ? "clicked" : null}`}
             onClick={(event) => {
@@ -57,15 +61,17 @@ export const Plantilla = () => {
           >
             INCLUYE
           </button>
-          <button
-            className={`${info === "ficha" ? "clicked" : null}`}
-            onClick={(event) => {
-              cambiarInfo(event.currentTarget.value);
-            }}
-            value={"ficha"}
-          >
-            FICHA TECNICA
-          </button>
+          {data[0].fichatecnica && (
+            <button
+              className={`${info === "ficha" ? "clicked" : null}`}
+              onClick={(event) => {
+                cambiarInfo(event.currentTarget.value);
+              }}
+              value={"ficha"}
+            >
+              FICHA TECNICA
+            </button>
+          )}
           <button
             className={`${info === "servicio" ? "clicked" : null}`}
             onClick={(event) => {
@@ -75,6 +81,7 @@ export const Plantilla = () => {
           >
             SERVICIO TECNICO
           </button>
+
           <button
             className={`${info === "garantia" ? "clicked" : null}`}
             onClick={(event) => {
@@ -97,19 +104,17 @@ export const Plantilla = () => {
                 {info === "incluye" && (
                   <div className="appear" style={{ margin: "0px" }}>
                     <ul style={{}}>
-                      {product.incluye
-                        .split("\n")
-                        .map((item, index) => (
-                          <li
-                            style={{
-                              paddingLeft: "10px",
-                              textAlign: "left",
-                            }}
-                            key={index}
-                          >
-                            {item}
-                          </li>
-                        ))}
+                      {product.incluye.split("\n").map((item, index) => (
+                        <li
+                          style={{
+                            paddingLeft: "10px",
+                            textAlign: "left",
+                          }}
+                          key={index}
+                        >
+                          {item}
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 )}
@@ -126,19 +131,17 @@ export const Plantilla = () => {
                 {info === "ficha" && (
                   <div className="appear" style={{ margin: "0px" }}>
                     <ul style={{}}>
-                      {product.fichatecnica
-                        .split("\n")
-                        .map((item, index) => (
-                          <li
-                            style={{
-                              paddingLeft: "10px",
-                              textAlign: "left",
-                            }}
-                            key={index}
-                          >
-                            {item}
-                          </li>
-                        ))}
+                      {product.fichatecnica.split("\n").map((item, index) => (
+                        <li
+                          style={{
+                            paddingLeft: "10px",
+                            textAlign: "left",
+                          }}
+                          key={index}
+                        >
+                          {item}
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 )}
@@ -147,127 +150,148 @@ export const Plantilla = () => {
           </div>
         </div>
       </div>
-      <h2 className="slider-header">¿QUE MATERIALES PUEDO USAR?</h2>
-      <div className="slider-container" style={{ height: "400px" }}>
-        <div
-          id="id"
-          className="slider-wrapper animation"
-          style={{ width: "-1673px" }}
-        >
-          {data.map((product) =>
-            product.materiales.map((material) => (
-              <div
-                className="slider-item"
-                key={Math.floor(Math.random() * (10000 - 1 + 1)) + 1}
-              >
-                <img alt="img1" src={material.urlimage} />
-                <p>{material.name}</p>
-                <p>Graba: SI</p>
-                <p>Corta: 3mm</p>
-              </div>
-            ))
-          )}
-        </div>
-      </div>
-      <h2 className="slider-header">PROYECTOS DE CLIENTES</h2>
-      <div className="slider-container" style={{ height: "400px" }}>
-        <div
-          className="slider-wrapper animation"
-          style={{ marginTop: "40px", width: "-2376px" }}
-        >
-          {data.map((product) =>
-            product.imagenesusuarios
-              .split("\n")
-              .map((item, index) => (
-                <div className="slider-item" key={index + item}>
-                  <img alt="img4" src={item} />
-                </div>
-              ))
-          )}
-        </div>
-      </div>
-      <div style={{ position: "relative" }}>
-        <a
-          href="https://www.sagaon.tech/collections/vectores-corte-y-grabado-cnc-laser-y-router-gratis"
-          target="_top"
-          style={{
-            position: "absolute",
-            right: "0px",
-            bottom: "0px",
-            width: "100%",
-            zIndex: "1",
-          }}
-        >
-          <button className="simple-button">DESCARGA TUS DISEÑOS</button>
-        </a>
-        <h2 className="slider-header">PROYECTOS SAGAON</h2>
-        <div className="slider-container" style={{ height: "400px" }}>
-          <div
-            className="slider-wrapper animation"
-            style={{ width: "-836.5px" }}
-          >
-            {data.map((product) =>
-              product.proyectossagaon
-                .split("\n")
-                .map((item, index) => (
-                  <div className="slider-item" key={index + item}>
-                    <img alt="img4" src={item} />
-                  </div>
-                ))
-            )}
-          </div>
-        </div>
-      </div>
-      <div>
-        <h2 className="slider-header">PREGUNTAS FRECUENTES</h2>
-      </div>
-      {data.map((product) => (
-        <div className="accordion-container" key={product.sku}>
-          <div className="accordion-wrapper">
-            <iframe
-              title="youtube-video"
-              width="560px"
-              height="315px"
-              src={
-                product.urlvideo !== null
-                  ? product.urlvideo
-                  : "https://www.youtube.com/embed/ZorCIyg1uMI"
-              }
-            ></iframe>
-            <div>
-				{product.preguntas.map((pregunta,index) => (
-			<Accordion key={index}
-                expanded={expanded === `panel${index}`}
-                onChange={handleChange(`panel${index}`)}
-              >
-                <AccordionSummary
-                  style={{ backgroundColor: "#e5e4e4", height: "53px" }}
-                  // expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                  <Typography className="accordion-subject">
-					{pregunta.pregunta}
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography
-                    className="accordion-details"
-                    style={{ textAlign: "left" }}
+      {data.map(
+        (product) =>
+          product.materiales !== null &&
+          product.materiales.map((material) =>
+            material !== null ? (
+              <>
+                <h2 className="slider-header">¿QUE MATERIALES PUEDO USAR?</h2>
+                <div className="slider-container" style={{ height: "400px" }}>
+                  <div
+                    id="id"
+                    className="slider-wrapper animation"
+                    style={{ width: "-1673px" }}
                   >
-                   {pregunta.respuesta}
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-				))}
-             
-             
+                    <div
+                      className="slider-item"
+                      key={Math.floor(Math.random() * (10000 - 1 + 1)) + 1}
+                    >
+                      <img alt="img1" src={material.urlimage} />
+                      <p>{material.name}</p>
+                      <p>Graba: SI</p>
+                      <p>Corta: 3mm</p>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : null
+          )
+      )}
+      {data.map(
+        (product) =>
+          product.imagenesusuarios !== null &&
+          product.imagenesusuarios.map((material) =>
+            material !== null ? (
+              <>
+                <h2 className="slider-header">PROYECTOS DE CLIENTES</h2>
+                <div className="slider-container" style={{ height: "400px" }}>
+                  <div
+                    className="slider-wrapper animation"
+                    style={{ marginTop: "40px", width: "-2376px" }}
+                  >
+                    {material.split("\n").map((item, index) => (
+                      <div className="slider-item" key={index + item}>
+                        <img alt="img4" src={item} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            ) : null
+          )
+      )}
+      {data.map(
+        (product) =>
+          product.proyectossagaon !== null &&
+          product.proyectossagaon.map((material) =>
+            material !== null ? (
+              <>
+                <div style={{ position: "relative" }}>
+                  <a
+                    href="https://www.sagaon.tech/collections/vectores-corte-y-grabado-cnc-laser-y-router-gratis"
+                    target="_top"
+                    style={{
+                      position: "absolute",
+                      right: "0px",
+                      bottom: "0px",
+                      width: "100%",
+                      zIndex: "1",
+                    }}
+                  >
+                    <button className="simple-button">
+                      DESCARGA TUS DISEÑOS
+                    </button>
+                  </a>
+                  <h2 className="slider-header">PROYECTOS SAGAON</h2>
+                  <div className="slider-container" style={{ height: "400px" }}>
+                    <div
+                      className="slider-wrapper animation"
+                      style={{ width: "-836.5px" }}
+                    >
+                      {material.split("\n").map((item, index) => (
+                        <div className="slider-item" key={index + item}>
+                          <img alt="img4" src={item} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : null
+          )
+      )}
+      {data.map((product) =>
+        product.urlvideo !== null ? (
+          <div key={product.sku}>
+            <div>
+              <h2 className="slider-header">ADICIONAL</h2>
+            </div>
+
+            <div className="accordion-container">
+              <div className="accordion-wrapper">
+                <iframe
+                  title="youtube-video"
+                  width="560px"
+                  height="315px"
+                  src={product.urlvideo}
+                ></iframe>
+                <div>
+                  {product.preguntas &&
+                    product.preguntas.map((pregunta, index) => (
+                      <Accordion
+                        key={index}
+                        expanded={expanded === `panel${index}`}
+                        onChange={handleChange(`panel${index}`)}
+                      >
+                        <AccordionSummary
+                          style={{ backgroundColor: "#e5e4e4", height: "53px" }}
+                          // expandIcon={<ExpandMoreIcon />}
+                          aria-controls="panel1a-content"
+                          id="panel1a-header"
+                        >
+                          <Typography className="accordion-subject">
+                            {pregunta.pregunta}
+                          </Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                          <Typography
+                            className="accordion-details"
+                            style={{ textAlign: "left" }}
+                          >
+                            {pregunta.respuesta}
+                          </Typography>
+                        </AccordionDetails>
+                      </Accordion>
+                    ))}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ) : null
+      )}
 
-      <div style={{ marginTop: "150px", position: "relative" }}>
+      {/*<div style={{ marginTop: "150px", position: "relative" }}>
         <img
           className="footer-img"
           alt="img-CNC3020"
@@ -291,7 +315,7 @@ export const Plantilla = () => {
             DESCARGA TU FICHA TECNICA
           </button>
         </a>
-      </div>
+      </div>*/}
     </div>
   );
 };
