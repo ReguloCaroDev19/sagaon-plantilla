@@ -87,6 +87,8 @@ code {
 }
 
 .App {
+	height: max-content;
+	width: 100%;
   text-align: center;
   overflow-x: hidden;
   padding-top: 100px;
