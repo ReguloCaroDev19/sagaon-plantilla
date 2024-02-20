@@ -40,7 +40,7 @@ export const Plantilla = () => {
     <div className="App">
       <div className="content-box-container">
         <div className="content-box-buttons">
-          {data.length > 0 && data.descripcion && (
+          {data.length > 0 && data[0].descripcion && (
             <button
               className={`${info === "descripcion" ? "clicked" : null}`}
               onClick={(event) => {
