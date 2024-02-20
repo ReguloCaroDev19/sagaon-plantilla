@@ -129,17 +129,32 @@ export const Plantilla = () => {
                   </p>
                 )}
                 {info === "ficha" && product.fichatecnica !== null && (
-                  <div className="appear" style={{ margin: "0px" }}>
-                    <ul style={{}}>
+                  <div
+                    className="appear"
+                    style={{
+                      margin: "0px",
+                      columnCount: "3",
+                      columnGap: "20px",
+                    }}
+                  >
+                    <ul
+                      style={{
+                        listStyleType: "none",
+                        paddingLeft: "0",
+                        margin: "0",
+                        padding: "0",
+                      }}
+                    >
                       {product.fichatecnica.split("\n").map((item, index) => (
                         <li
-                          style={{
-                            paddingLeft: "10px",
-                            textAlign: "left",
-                          }}
                           key={index}
+                          style={{
+                            paddingLeft: "15px",
+                            textAlign: "left",
+                            marginBottom: "2px",
+                          }}
                         >
-                          {item}
+                          {item.startsWith("•") ? item : `• ${item}`}{" "}
                         </li>
                       ))}
                     </ul>
