@@ -40,7 +40,7 @@ export const Plantilla = () => {
     <div className="App">
       <div className="content-box-container">
         <div className="content-box-buttons">
-          {data[0].descripcion && (
+          {data.length > 0 && data.descripcion && (
             <button
               className={`${info === "descripcion" ? "clicked" : null}`}
               onClick={(event) => {
@@ -61,7 +61,7 @@ export const Plantilla = () => {
           >
             INCLUYE
           </button>
-          {data[0].fichatecnica && (
+          {data.length > 0 && data[0].fichatecnica && (
             <button
               className={`${info === "ficha" ? "clicked" : null}`}
               onClick={(event) => {
@@ -96,7 +96,7 @@ export const Plantilla = () => {
           <div style={{ display: "flex" }}>
             {data.map((product) => (
               <div key={product.sku} className="product-info">
-                {info === "descripcion" && (
+                {info === "descripcion" && product.descripcion !== null && (
                   <p className="appear" style={{ margin: "0px" }}>
                     {product.descripcion}
                   </p>
@@ -128,7 +128,7 @@ export const Plantilla = () => {
                     {product.garantia}
                   </p>
                 )}
-                {info === "ficha" && (
+                {info === "ficha" && product.fichatecnica !== null && (
                   <div className="appear" style={{ margin: "0px" }}>
                     <ul style={{}}>
                       {product.fichatecnica.split("\n").map((item, index) => (
