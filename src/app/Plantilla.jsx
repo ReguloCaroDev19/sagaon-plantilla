@@ -1,12 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './index.css';
 import './mobil.css';
 import { useParams } from 'react-router-dom';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Typography,
+} from "@mui/material";
 
 export const Plantilla = () => {
-  const [data, setData] = useState<any>([]);
-  const [info, setInfo] = useState<any>('descripcion');
+  const [data, setData] = useState([]);
+  const [info, setInfo] = useState('descripcion');
+  const [expanded, setExpanded] = useState(false);
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
   const { id } = useParams();
 
   useEffect(() => {
@@ -22,7 +32,7 @@ export const Plantilla = () => {
     };
     fetchData();
   }, []);
-  const cambiarInfo = (value: any) => {
+  const cambiarInfo = (value) => {
     setInfo(value);
   };
   return (
@@ -77,7 +87,7 @@ export const Plantilla = () => {
         </div>
         <div className="content-box-message">
           <div style={{ display: "flex" }}>
-            {data.map((product: any) => (
+            {data.map((product) => (
               <div key={product.sku} className="product-info">
                 {info === "descripcion" && (
                   <p className="appear" style={{ margin: "0px" }}>
@@ -89,7 +99,7 @@ export const Plantilla = () => {
                     <ul style={{}}>
                       {product.incluye
                         .split("\n")
-                        .map((item: any, index: any) => (
+                        .map((item, index) => (
                           <li
                             style={{
                               paddingLeft: "10px",
@@ -118,7 +128,7 @@ export const Plantilla = () => {
                     <ul style={{}}>
                       {product.fichatecnica
                         .split("\n")
-                        .map((item: any, index: any) => (
+                        .map((item, index) => (
                           <li
                             style={{
                               paddingLeft: "10px",
@@ -144,8 +154,8 @@ export const Plantilla = () => {
           className="slider-wrapper animation"
           style={{ width: "-1673px" }}
         >
-          {data.map((product: any) =>
-            product.materiales.map((material: any, index: number) => (
+          {data.map((product) =>
+            product.materiales.map((material) => (
               <div
                 className="slider-item"
                 key={Math.floor(Math.random() * (10000 - 1 + 1)) + 1}
@@ -165,10 +175,10 @@ export const Plantilla = () => {
           className="slider-wrapper animation"
           style={{ marginTop: "40px", width: "-2376px" }}
         >
-          {data.map((product: any) =>
+          {data.map((product) =>
             product.imagenesusuarios
               .split("\n")
-              .map((item: any, index: any) => (
+              .map((item, index) => (
                 <div className="slider-item" key={index + item}>
                   <img alt="img4" src={item} />
                 </div>
@@ -196,10 +206,10 @@ export const Plantilla = () => {
             className="slider-wrapper animation"
             style={{ width: "-836.5px" }}
           >
-            {data.map((product: any) =>
+            {data.map((product) =>
               product.proyectossagaon
                 .split("\n")
-                .map((item: any, index: any) => (
+                .map((item, index) => (
                   <div className="slider-item" key={index + item}>
                     <img alt="img4" src={item} />
                   </div>
@@ -211,7 +221,7 @@ export const Plantilla = () => {
       <div>
         <h2 className="slider-header">PREGUNTAS FRECUENTES</h2>
       </div>
-      {data.map((product: any) => (
+      {data.map((product) => (
         <div className="accordion-container" key={product.sku}>
           <div className="accordion-wrapper">
             <iframe
@@ -224,6 +234,35 @@ export const Plantilla = () => {
                   : "https://www.youtube.com/embed/ZorCIyg1uMI"
               }
             ></iframe>
+            <div>
+				{product.preguntas.map((pregunta,index) => (
+			<Accordion key={index}
+                expanded={expanded === `panel${index}`}
+                onChange={handleChange(`panel${index}`)}
+              >
+                <AccordionSummary
+                  style={{ backgroundColor: "#e5e4e4", height: "53px" }}
+                  // expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography className="accordion-subject">
+					{pregunta.pregunta}
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography
+                    className="accordion-details"
+                    style={{ textAlign: "left" }}
+                  >
+                   {pregunta.respuesta}
+                  </Typography>
+                </AccordionDetails>
+              </Accordion>
+				))}
+             
+             
+            </div>
           </div>
         </div>
       ))}
