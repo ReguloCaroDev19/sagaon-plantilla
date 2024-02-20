@@ -89,6 +89,7 @@ code {
 .App {
   text-align: center;
   overflow-x: hidden;
+  padding-top: 100px;
 }
 
 .slider-container {
