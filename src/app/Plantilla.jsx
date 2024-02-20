@@ -12,7 +12,7 @@ import {
 
 export const Plantilla = () => {
   const [data, setData] = useState([]);
-  const [info, setInfo] = useState("descripcion");
+  const [info, setInfo] = useState("Incluye");
   const [expanded, setExpanded] = useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -40,6 +40,15 @@ export const Plantilla = () => {
     <div className="App">
       <div className="content-box-container">
         <div className="content-box-buttons">
+          <button
+            className={`${info === "incluye" ? "clicked" : null}`}
+            onClick={(event) => {
+              cambiarInfo(event.currentTarget.value);
+            }}
+            value={"incluye"}
+          >
+            INCLUYE
+          </button>
           {data.length > 0 && data[0].descripcion && (
             <button
               className={`${info === "descripcion" ? "clicked" : null}`}
@@ -52,15 +61,6 @@ export const Plantilla = () => {
             </button>
           )}
 
-          <button
-            className={`${info === "incluye" ? "clicked" : null}`}
-            onClick={(event) => {
-              cambiarInfo(event.currentTarget.value);
-            }}
-            value={"incluye"}
-          >
-            INCLUYE
-          </button>
           {data.length > 0 && data[0].fichatecnica && (
             <button
               className={`${info === "ficha" ? "clicked" : null}`}
