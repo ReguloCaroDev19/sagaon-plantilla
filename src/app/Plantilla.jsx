@@ -26,6 +26,7 @@ export const Plantilla = () => {
            `https://sagaon-express.vercel.app/${id}`
          );
          setData(response.data);
+         console.log(response.data[0].materiales[0]);
          setInfo(response.data[0].descripcion ? "descripcion" : "incluye");
        } catch (error) {
          console.error("Error fetching data: ", error);
@@ -166,36 +167,36 @@ export const Plantilla = () => {
        </div>
        {data.map(
          (product) =>
-           product.materiales !== null &&
-           product.materiales.map((material) =>
-             material !== null ? (
-               <>
-                 <h2 className="slider-header">¿QUE MATERIALES PUEDO USAR?</h2>
-                 <div className="slider-container" style={{ height: "400px" }}>
-                   <div
-                     id="id"
-                     className="slider-wrapper animation"
-                     style={{ width: "-1673px" }}
-                   >
-                     <div
-                       className="slider-item"
-                       key={Math.floor(Math.random() * (10000 - 1 + 1)) + 1}
-                     >
-                       <img alt="img1" src={material.urlimage} />
-                       <p>{material.name}</p>
-                       <p>Graba: SI</p>
-                       <p>Corta: 3mm</p>
-                     </div>
-                   </div>
-                 </div>
-               </>
-             ) : null
-           )
+        product.materiales &&
+        product.materiales[0].map((material) =>
+          material !== null ? (
+            <>
+              <h2 className="slider-header">¿QUE MATERIALES PUEDO USAR?</h2>
+              <div className="slider-container" style={{ height: "400px" }}>
+                <div
+                  id="id"
+                  className="slider-wrapper animation"
+                  style={{ width: "-1673px" }}
+                >
+                  <div
+                    className="slider-item"
+                    key={Math.floor(Math.random() * (10000 - 1 + 1)) + 1}
+                  >
+                    <img alt="img1" src={material.url_image} />
+                    <p>{material.name}</p>
+                    <p>Graba: SI</p>
+                    <p>Corta: 3mm</p>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : null
+        )
        )}
        {data.map(
          (product) =>
-           product.imagenesusuarios !== null &&
-           product.imagenesusuarios.map((material) =>
+           product.imagenes_usuarios &&
+           product.imagenes_usuarios.map((material) =>
              material !== null ? (
                <>
                  <h2 className="slider-header">PROYECTOS DE CLIENTES</h2>
@@ -217,8 +218,8 @@ export const Plantilla = () => {
        )}
        {data.map(
          (product) =>
-           product.proyectossagaon !== null &&
-           product.proyectossagaon.map((material) =>
+           product.proyectos_sagaon &&
+           product.proyectos_sagaon.map((material) =>
              material !== null ? (
                <>
                  <div style={{ position: "relative" }}>
